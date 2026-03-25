@@ -1,107 +1,75 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GIVE.GO.DO. — Touch the Humanity</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        :root{--black:#0C0B09;--ink:#141210;--card:#161412;--off:#F0EDE6;--gold:#C9974A;--gold2:#E8B86D;--green:#1E3D1E;--gray:#6B6660;--lgray:#9C9890;}
-        *{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
-        body{font-family:'Manrope',sans-serif;background:var(--black);color:var(--off);overflow-x:hidden;}
-        
-        /* Navigation */
-        nav{position:fixed;top:0;left:0;right:0;z-index:300;display:flex;align-items:center;justify-content:space-between;padding:16px 48px;background:rgba(12,11,9,0.96);border-bottom:1px solid rgba(201,151,74,0.18);backdrop-filter:blur(12px);}
-        .logo-wrap{display:flex;flex-direction:column;line-height:1;text-decoration:none;}
-        .logo-main{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:5px;color:var(--off);}
-        .logo-main span{color:var(--gold);}
-        .logo-sub{font-size:9px;letter-spacing:3.5px;text-transform:uppercase;color:var(--gold);margin-top:1px;}
-        .nav-links{display:flex;gap:28px;align-items:center;}
-        .nav-a{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--lgray);text-decoration:none;transition:color .3s;}
-        .nav-a:hover{color:var(--gold);}
-        .nav-cta{background:var(--gold);color:var(--black);padding:10px 22px;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-decoration:none;transition:background .3s;}
-        .nav-cta:hover{background:var(--gold2);}
-
-        /* Hero Section */
-        .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 48px 72px;position:relative;overflow:hidden;}
-        .hero-img{position:absolute;inset:0;background:url('https://raw.githubusercontent.com/Gemini-Assets/main/givegodo_hero.jpg') center/cover no-repeat; opacity: 0.6;}
-        .hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(12,11,9,0.97) 0%,rgba(12,11,9,0.7) 50%,rgba(12,11,9,0.3) 100%);}
-        .rel{position:relative;}
-        .hero-eyebrow{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;animation:fu .7s ease both;}
-        .hero-h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(72px,12vw,160px);letter-spacing:8px;line-height:.92;color:var(--off);animation:fu .8s .08s ease both;}
-        .hero-h1 .dot{color:var(--gold);}
-        .hero-tagline{font-family:'Bebas Neue',sans-serif;font-size:clamp(20px,3vw,36px);letter-spacing:6px;color:var(--gold);margin-top:16px;animation:fu .8s .16s ease both;}
-        .hero-desc{font-size:17px;line-height:1.75;max-width:580px;color:rgba(240,237,230,.75);font-weight:300;margin-top:24px;}
-        
-        /* Stats */
-        .hero-stats{margin-top:72px;display:flex;border-top:1px solid rgba(201,151,74,.25);padding-top:36px;}
-        .hstat{flex:1;padding-right:40px;border-right:1px solid rgba(201,151,74,.12);margin-right:40px;}
-        .hstat-n{font-family:'Bebas Neue',sans-serif;font-size:52px;letter-spacing:2px;color:var(--gold);line-height:1;}
-        .hstat-l{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(240,237,230,.5);margin-top:6px;}
-
-        /* Projects Grid */
-        .projects{background:var(--black);padding:100px 48px;}
-        .sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,4.5vw,60px);letter-spacing:3px;color:var(--off);line-height:1;margin-bottom:48px;}
-        .proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
-        
-        /* Project Card Styles */
-        .pcard{background:var(--card);cursor:pointer;transition:all .35s;display:flex;flex-direction:column;border:1px solid rgba(201,151,74,0.15);}
-        .pcard:hover{transform:translateY(-5px);border-color:var(--gold);}
-        .pcard-img{height:240px;overflow:hidden;position:relative;}
-        .pcard-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s;}
-        .pcard-body{padding:24px;flex:1;}
-        .pcard-country{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
-        .pcard-name{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:2px;color:var(--off);margin-bottom:16px;}
-        
-        .budget-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;background:rgba(201,151,74,.05);padding:12px;margin-bottom:16px;}
-        .blabel{font-size:9px;text-transform:uppercase;letter-spacing:1.5px;color:var(--gray);margin-bottom:4px;}
-        .bval{font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--off);}
-        .pcard-btn{width:100%;background:transparent;border:1px solid var(--gold);color:var(--gold);padding:12px;text-transform:uppercase;font-size:11px;font-weight:700;cursor:pointer;transition:all .3s;}
-        .pcard-btn:hover{background:var(--gold);color:var(--black);}
-
-        @keyframes fu{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
-        @media(max-width:1024px){.proj-grid{grid-template-columns:repeat(2,1fr);}}
-        @media(max-width:768px){nav{padding:14px 20px;}.proj-grid{grid-template-columns:1fr;}.hero{padding:20px;}}
+        /* Дополнительные стили для динамики */
+        #projects-container { min-height: 400px; position: relative; }
+        .loading-view { text-align: center; padding: 100px; color: var(--gold); font-family: 'Bebas Neue'; font-size: 24px; letter-spacing: 2px; }
+        .pcard-img img { width: 100%; height: 100%; object-fit: cover; }
     </style>
 </head>
 <body>
 
-<nav>
-    <a href="#" class="logo-wrap">
-        <span class="logo-main">GIVE<span>.</span>GO<span>.</span>DO<span>.</span></span>
-        <span class="logo-sub">Touch the Humanity</span>
-    </a>
-    <div class="nav-links">
-        <a class="nav-a" href="#projects">Проекты</a>
-        <a class="nav-cta" href="#projects">Выбрать миссию</a>
-    </div>
-</nav>
-
-<section class="hero">
-    <div class="hero-img"></div>
-    <div class="hero-overlay"></div>
-    <div class="rel hero-eyebrow">Humanitarian Travel</div>
-    <h1 class="rel hero-h1">GIVE<span class="dot">.</span>GO<span class="dot">.</span>DO<span class="dot">.</span></h1>
-    <div class="rel hero-tagline">Touch the Humanity</div>
-    <p class="rel hero-desc">Собери деньги. Прилети сам. Сделай доброе дело своими руками. <strong>Это не просто туризм.</strong></p>
-    
-    <div class="rel hero-stats">
-        <div class="hstat"><div class="hstat-n">12+</div><div class="hstat-l">Стран</div></div>
-        <div class="hstat"><div class="hstat-n">100%</div><div class="hstat-l">Прозрачность</div></div>
-        <div class="hstat"><div class="hstat-n">24/7</div><div class="hstat-l">Поддержка</div></div>
-    </div>
-</section>
-
 <section class="projects" id="projects">
-    <div class="sec-title">ТЕКУЩИЕ МИССИИ</div>
-    
-    <div class="proj-grid" id="projects-container">
-        <div style="color: var(--gray);">Загрузка проектов...</div>
+    <div class="proj-header">
+        <div>
+            <div class="sec-eyebrow">Choose your mission / Выбери проект</div>
+            <div class="sec-title">ВАШИ МИССИИ</div>
+        </div>
+    </div>
+
+    <div class="cat-tabs">
+        <button class="ctab active" onclick="filterProjects('africa', event)">🌍 Африка / Азия</button>
+        <button class="ctab" onclick="filterProjects('cis', event)">🕌 СНГ / Балканы</button>
+    </div>
+
+    <div id="projects-container" class="proj-grid">
+        <div class="loading-view">ПОИСК ДОСТУПНЫХ МИССИЙ...</div>
     </div>
 </section>
+
+<div class="overlay" id="modal-overlay">
+    <div class="modal">
+        <button class="modal-x" onclick="closeModal()">✕</button>
+        <div class="modal-acc" id="modal-accent"></div>
+        <div class="modal-hero"><img src="" id="modal-img"></div>
+        <div class="modal-head">
+            <div class="mcountry" id="modal-country"></div>
+            <div class="mtitle" id="modal-title"></div>
+        </div>
+        <div class="mbody">
+            <div class="msec">О миссии</div>
+            <div class="mtext" id="modal-desc"></div>
+            <div class="mprice-row">
+                <div class="mpbox">
+                    <div class="mplabel">Сбор проекта</div>
+                    <div class="mpval" id="modal-goal"></div>
+                </div>
+                <div class="mpbox">
+                    <div class="mplabel">Тур (чел)</div>
+                    <div class="mpval" id="modal-price"></div>
+                </div>
+            </div>
+            <a href="https://t.me/твой_ник" class="mcta">Забронировать в Telegram</a>
+        </div>
+    </div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="app.js"></script>
 
+<script>
+    // Логика переключения вкладок
+    function filterProjects(category, event) {
+        document.querySelectorAll('.ctab').forEach(t => t.classList.remove('active'));
+        event.target.classList.add('active');
+        window.currentCategory = category;
+        renderProjects(window.allProjects);
+    }
+    
+    function closeModal() {
+        document.getElementById('modal-overlay').classList.remove('on');
+    }
+</script>
 </body>
 </html>
